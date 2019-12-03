@@ -1,0 +1,13 @@
+<p>
+	<strong>
+		<%= comment.user %>
+	</strong>
+</p>
+
+<p>
+	<%= comment.body %>
+</p>
+
+<p>
+	<%= link_to 'Delete', [comment.post, comment], method: :delete %>
+</p>
