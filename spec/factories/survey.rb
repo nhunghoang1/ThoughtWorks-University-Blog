@@ -1,5 +1,5 @@
 FactoryBot.define do
-    factory :survey do
-      name { "Engagement Survey" }
-    end
+  factory :survey do
+    name { "Engagement Survey" }
   end
+end

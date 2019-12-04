@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 RSpec.describe Survey, type: :model do
 	subject { FactoryBot.build(:survey) }
