@@ -16,4 +16,16 @@ class Survey < ApplicationRecord
 		end
 	end
 
+	def check_response(email)
+		responses = @responses.select do |response|
+			email == response.email 
+		end
+
+		if responses.count > 0
+			return true
+		else
+			return false
+		end
+	end
 end
+
