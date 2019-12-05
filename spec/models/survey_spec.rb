@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Survey, type: :model do
 	subject { FactoryBot.build(:survey) }
 	
+
 	it "has a name" do
 		expect(subject.name).to eq("Engagement Survey")
 	end

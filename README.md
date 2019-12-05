@@ -1,24 +1,23 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### How to install Node
 
-Things you may want to cover:
+install node
+`brew install nvm`
 
-* Ruby version
+Follow the post-installation instructions (add the shit to .zshrc)
+and then open a new terminal
 
-* System dependencies
+install node
+`nvm ls-remote`
 
-* Configuration
+find the latest and install
 
-* Database creation
+`nvm install v12.13.1`
 
-* Database initialization
+and then open a new terminal and install yarn globally
 
-* How to run the test suite
+`npm install yarn -g`
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
-
-* ...
+and then follow the instructions on github `react-rails`
