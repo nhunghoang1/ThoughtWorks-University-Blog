@@ -19,7 +19,7 @@ RSpec.describe Survey, type: :model do
 		response = double(:response)
 		subject.add_response(response)
 
-		expect(subject.add_response).to include(response)
+		expect(subject.responses).to include(response)
 	end
 
 	describe "#find_response_by_email" do
@@ -52,7 +52,7 @@ RSpec.describe Survey, type: :model do
 		end
 	end
 	
-	describe "#check_response" do
+	describe "#check_response?" do
 		let(:response1) { Response.new(email: 'email1@example.com')}
 		let(:response2) { Response.new(email: 'email2@example.com')}
 
@@ -63,14 +63,44 @@ RSpec.describe Survey, type: :model do
 
 		context "when user has responded" do
 			it "will return true" do
-				expect(subject.check_response).to eq(true)
+				expect(subject.check_response('email1@example.com')).to eq(true)
 			end
 		end
 
-		context "when user has not response" do
+		context "when user has not responded" do
 			it "will return false" do
-        expect(subject.has_responded_yet?('anemail@thatdoesntexist.com')).to eq(false)
+        expect(subject.check_response?('anemail@thatdoesntexist.com')).to eq(false)
       end
+		end
+	end
+
+	describe '#get_answer_for_rating_question' do
+		let(:rating_question) { RatingQuestion.new(title: "Are you happy with your work enviroment?") }
+
+		let(:response) { Response.new(email: "email@example.com") }
+
+		let(:answer1) { Answer.new(question: rating_question, value: 1) }
+		let(:answer2) { Answer.new(question: rating_question, value: 0) }
+		let(:answer3) { Answer.new(question: rating_question, value: 5) }
+
+		before {
+			subject.add_question(rating_question)
+			subject.add_response(response)
+			response.add_answer(answer1)
+			response.add_answer(answer2)
+			response.add_answer(answer3)
+		}
+
+		context "when there is a particular rating question" do
+			it "will show the number of each answer" do
+				expect(subject.get_answer_for_rating_question(rating_question)).to eq(
+					{ 
+						1 => 1,
+						2 => 0,
+						3 => 5
+					}
+				)
+			end
 		end
 	end
 end

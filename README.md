@@ -5,7 +5,7 @@
 install node
 `brew install nvm`
 
-Follow the post-installation instructions (add the shit to .zshrc)
+Follow the post-installation instructions (add the stuff vim ~/.zshrc)
 and then open a new terminal
 
 install node

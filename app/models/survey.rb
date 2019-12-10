@@ -16,7 +16,7 @@ class Survey < ApplicationRecord
 		end
 	end
 
-	def check_response(email)
+	def check_response?(email)
 		responses = @responses.select do |response|
 			email == response.email 
 		end
@@ -25,6 +25,27 @@ class Survey < ApplicationRecord
 			return true
 		else
 			return false
+		end
+	end
+
+	def get_answer_for_rating_question(rating_question)
+		answers_summary = {
+			1 => 0,
+			2 => 0,
+			3 => 0,
+			4 => 0,
+			5 => 0
+		}
+
+		@responses.each do |response|
+			response.answers.each do |answer|
+				if answer.question == rating_question
+					if answer.value.class == Integer && answer.value >= 1 && answer.value <= 5
+						answers_summary[answer.value] = answers_summary[answer.value] + 1
+					end
+				end
+			end
+		answers_summary
 		end
 	end
 end

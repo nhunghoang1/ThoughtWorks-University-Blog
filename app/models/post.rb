@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
 	has_many :comments, dependent: :destroy
 	validates :title, presence: true,
-					  length: { minimum: 5 }
+					  uniqueness: { message: '%{value} is already used' }
 end
